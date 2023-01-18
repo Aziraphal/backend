@@ -2,6 +2,11 @@ const express = require('express');
 
 const app = express();
 const mongoose = require('mongoose');
+const Thing = require('./models/thing');
+const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
+
+mongoose.set('strictQuery', true);
 mongoose.connect('mongodb+srv://kaogan:HzfkQmYGQ4rcfYl1@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -13,21 +18,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
-app.use((req, res, next) =>{
-    console.log('requête reçue !');
-    next();
-})
-app.use((req, res, next) =>{
-    res.status(201);
-    next()
-});
-app.use((req, res, next) =>{
-    res.json({ message: 'votre requête a bien été reçu !'});
-    next();
-});
 
-app.use((req, res) =>{
-    console.log('requête envoyée avec succès')
-});
-
+app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 module.exports = app;
