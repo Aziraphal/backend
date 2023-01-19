@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const Thing = require('./models/thing');
-const stuffRoutes = require('./routes/stuff');
+const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
 mongoose.set('strictQuery', true);
@@ -19,6 +19,6 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/stuff', stuffRoutes);
+app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 module.exports = app;

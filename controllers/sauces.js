@@ -102,7 +102,7 @@ exports.deleteThing = (req, res, next) => {
   );
 };
 
-exports.getAllStuff = (req, res, next) => {
+exports.getAllSauces = (req, res, next) => {
   Thing.find().then(
     (things) => {
       res.status(200).json(things);
