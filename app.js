@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Thing = require('./models/thing');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb+srv://kaogan:HzfkQmYGQ4rcfYl1@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
@@ -21,4 +22,5 @@ app.use((req, res, next) => {
 
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app;
