@@ -1,11 +1,13 @@
 const express = require('express');
-
+const path = require('path');
 const mongoose = require('mongoose');
-const sauce = require('./models/sauceSchema');
+
+//const sauceSchema = require('./models/sauceSchema');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
-const path = require('path');
+
 const app = express();
+
 mongoose.set('strictQuery', true);
 mongoose.connect('mongodb+srv://kaogan:HzfkQmYGQ4rcfYl1@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,

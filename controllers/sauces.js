@@ -1,13 +1,12 @@
-const Sauce = require('../models/sauceSchema')
+const Sauce = require('../models/sauceSchema');
 const fs = require('fs');
 
 exports.createSauce = (req, res, next) => {
   const hotSauce = JSON.parse(req.body.sauce);
   delete hotSauce._id;
-  delete hotSauce._userId;
   const sauce = new Sauce({
     ...hotSauce,
-    userId: req, auth, userId,
+    userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
   sauce.save()
@@ -47,7 +46,7 @@ exports.modifySauce = (req, res, next) => {
         heat: req.body.heat,
         userId: req.body.userId,
       };
-
+const regex = /^[a-zA-Z0-9 ]+$/
   if (
     !regex.test(hotSauce.name) ||
     !regex.test(hotSauce.manufacturer) ||
@@ -57,7 +56,7 @@ exports.modifySauce = (req, res, next) => {
   ) {
     return res
       .status(500)
-      .json({ error: "Des champs contiennent des caractères invalides" }); // Checking from form input values format before dealing with them
+      .json({ error: "Des champs contiennent des caractères invalides" }); 
   }
 
   Sauce.updateOne(
