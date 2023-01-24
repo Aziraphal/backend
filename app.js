@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 
-//const sauceSchema = require('./models/sauceSchema');
+const sauceSchema = require('./models/sauceSchema');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
 const app = express();
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb+srv://kaogan:HzfkQmYGQ4rcfYl1@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://kaogan:aoKlH9IES34gpB3P@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
