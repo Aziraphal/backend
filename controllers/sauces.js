@@ -39,18 +39,6 @@ exports.modifySauce = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`} : {...req.body}
-/*const regex = /^[a-zA-Z0-9 ]+$/
-  if (
-    !regex.test(hotSauce.name) ||
-    !regex.test(hotSauce.manufacturer) ||
-    !regex.test(hotSauce.description) ||
-    !regex.test(hotSauce.mainPepper) ||
-    !regex.test(hotSauce.heat)
-  ) {
-    return res
-      .status(500)
-      .json({ error: "Des champs contiennent des caractères invalides" }); 
-  }*/
 
   Sauce.updateOne(
     { _id: req.params.id },
