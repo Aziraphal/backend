@@ -10,7 +10,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb+srv://kaogan:aoKlH9IES34gpB3P@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect( process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
