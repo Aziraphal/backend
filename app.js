@@ -1,9 +1,13 @@
 const express = require('express');
+const helmet = require("helmet");
 const path = require('path');
 const mongoose = require('mongoose');
-
+const sauceSchema = require('./models/sauceSchema');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb+srv://kaogan:aoKlH9IES34gpB3P@cluster0.mbv90uy.mongodb.net/?retryWrites=true&w=majority',
@@ -21,6 +25,8 @@ app.use((req, res, next) => {
     next();
   });
 
+  
+app.use(helmet());
 app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
