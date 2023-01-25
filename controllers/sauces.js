@@ -76,6 +76,7 @@ exports.deleteSauce = (req, res, next) => {
 };
 
 exports.getAllSauces = (req, res, next) => {
+  console.log('test')
   Sauce.find()
   .then(
     (sauces) => {
