@@ -2,7 +2,6 @@ const express = require('express');
 const helmet = require("helmet");
 const path = require('path');
 const mongoose = require('mongoose');
-const sauceSchema = require('./models/sauceSchema');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 const dotenv = require("dotenv");
@@ -24,7 +23,7 @@ app.use((req, res, next) => {
     next();
   });
 
-//app.use(helmet());
+app.use(helmet());
 app.use(express.json());
 
 app.use('/api/sauces', saucesRoutes);
