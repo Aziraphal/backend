@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const helmet = require('helmet');
+const hpp = require('hpp');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 const dotenv = require('dotenv');
@@ -23,7 +26,11 @@ mongoose.connect( process.env.SECRET_DB,
   });
 
 app.use(express.json());
-
+app.use(cors());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "same-site"}
+}));
+app.use(hpp());
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
