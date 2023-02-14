@@ -50,17 +50,15 @@ exports.modifySauce = (req, res) => {
           ...JSON.parse(req.body.sauce),
           imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
           }
-      ) : sauceObject = {...req.body};
-  Sauce.updateOne({_id: req.params.id},{...sauceObject, _id: req.params.id})
+      ) : hotSauce = {...req.body};
+  Sauce.updateOne({_id: req.params.id},{...hotSauce, _id: req.params.id})
       .then(() => res.status(200).json({message: 'Sauce modifiée !'}))
       .catch((error) => res.status(400).json({error}))
 };
 
 exports.deleteSauce = (req, res) => {
-  console.log(req.auth)
   Sauce.findOne({ _id: req.params.id })
   .then (sauce => {
-    console.log('sauce:', sauce);
     if (sauce.userId !== req.auth.userId) {
         res.status(403).json({message: `Non autorisé`});
       } else {
